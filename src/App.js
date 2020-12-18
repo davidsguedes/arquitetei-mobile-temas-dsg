@@ -1,25 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import { ThemeProvider } from 'styled-components';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import InputText from './inputText';
+import React, { Component } from 'react';
+import { lightTheme, darkTheme } from './theme';
+
+import SignUpButton from './SignUpButton';
+import { GlobalStyle } from './GlobalStyle';
+
+import BarraNavegacao from './BarraNavegacao';
+import Carrossel from './Carrossel';
+
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      theme: 'lightTheme',
+    };
+
+  }
+
+  render() {
+    return (
+      <ThemeProvider theme={this.state.theme === 'lightTheme' ? lightTheme : darkTheme}>
+        <GlobalStyle/>
+          <div className="App">
+            <BarraNavegacao />
+            <Carrossel />
+          </div>
+      </ThemeProvider>
+    );
+  }
 }
+
 
 export default App;
